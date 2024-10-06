@@ -53,12 +53,12 @@
 
         #buyNowContainer {
             left: 20px;
-            display: none; /* Hidden by default */
+            display: none;
         }
 
         #playPauseButtonContainer {
             right: 20px;
-            display: none; /* Hidden by default */
+            display: none;
         }
 
         #buyNowButton, #playPauseButton {
@@ -125,7 +125,7 @@
 
     <!-- Play/Pause Button (hidden initially) -->
     <div id="playPauseButtonContainer">
-        <button id="playPauseButton">Play with Audio</button>
+        <button id="playPauseButton">Play with Sound</button>
     </div>
 
     <!-- AR Scene -->
@@ -205,17 +205,19 @@
 
             // Show Play/Pause button
             playPauseButtonContainer.style.display = 'block';
-            playPauseButton.textContent = 'Play with Audio'; // Updated text
+            playPauseButton.textContent = 'Play with Sound';
         };
 
         // Change the color of the dropdown text to green when selected
         const changeSelectedDropdownColor = (selectElement) => {
             if (selectElement.value !== "") {
                 selectElement.classList.add('selected'); // Add class to change text color
+            } else {
+                selectElement.classList.remove('selected'); // Remove class if no selection
             }
         };
 
-        // Event listeners for each dropdown
+        // Add event listeners for each dropdown
         goldJewelrySelect.addEventListener('change', (event) => {
             resetOtherDropdowns(goldJewelrySelect);  // Reset other dropdowns
             changeSelectedDropdownColor(goldJewelrySelect); // Change text color
@@ -225,7 +227,7 @@
                     changeJewelryVideo(ringVideo, 'https://www.bluestone.com/jewellery/rings.html');
                     break;
                 case 'necklace':
-                    changeJewelryVideo(necklaceVideo, 'https://www.bluestone.com/jewellery/necklaces.html');
+                    changeJewelryVideo(necklaceVideo, 'https://www.bluestone.com/jewellery/pendants.html');
                     break;
                 case 'earrings':
                     changeJewelryVideo(earringsVideo, 'https://www.bluestone.com/jewellery/earrings.html');
@@ -287,12 +289,12 @@
             if (currentVideo && targetVisible) {
                 if (isPlaying) {
                     currentVideo.pause();
-                    playPauseButton.textContent = 'Play with Audio'; // Show Play when paused
+                    playPauseButton.textContent = 'Play with Sound';
                 } else {
                     currentVideo.play();
-                    playPauseButton.textContent = 'Pause'; // Show Pause when playing
+                    playPauseButton.textContent = 'Pause Sound';
                 }
-                isPlaying = !isPlaying; // Toggle the play state
+                isPlaying = !isPlaying;
             }
         });
 
@@ -303,13 +305,10 @@
             targetVisible = true;
             // Show the dropdown menu only when the target is found
             document.querySelector('#catalogueContainer').style.display = 'flex';
-
-            // Show the Buy Now button
-            buyNowContainer.style.display = 'block'; 
             playPauseButtonContainer.style.display = 'block'; // Show Play/Pause button
 
             if (!isPlaying) {
-                playPauseButton.textContent = 'Play with Audio'; // Updated text
+                playPauseButton.textContent = 'Play with Sound';
             }
         });
 
@@ -324,7 +323,7 @@
                 currentVideo.pause();
             }
             isPlaying = false;
-            playPauseButton.textContent = 'Play with Audio'; // Reset text when target lost
+            playPauseButton.textContent = 'Play with Sound';
         });
     </script>
 </body>
